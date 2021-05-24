@@ -20,6 +20,7 @@ export interface IState {
     [key in string]: TCity;
   };
   activeCity: string;
+  error: boolean;
 }
 
 export const weatherSlice = createSlice({
@@ -27,6 +28,7 @@ export const weatherSlice = createSlice({
   initialState: {
     cities: {},
     activeCity: cities[0],
+    error: false,
   },
   reducers: {
     getWeatherRequest: (state: IState, action: PayloadAction<string>) => {},
@@ -42,8 +44,11 @@ export const weatherSlice = createSlice({
           needUpdate: false,
         },
       };
+      state.error = false;
     },
-    getWeatherError: () => {},
+    getWeatherError: (state: IState) => {
+      state.error = true;
+    },
     actualizeWeather: (state: IState) => {
       Object.entries(state.cities).forEach(([key, city]) => {
         if (differenceInMinutes(new Date(), new Date(city.updatedAt)) > 1) {

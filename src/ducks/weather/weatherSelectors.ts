@@ -12,3 +12,7 @@ export const cityWeatherSelector = (city?: string) =>
   weatherSelectorFactory((state: IState): TCity | null =>
     city ? state.cities[city] : null
   );
+
+export const cityWeatherErrorSelector = weatherSelectorFactory(
+  (state: IState): boolean => state.error
+);
