@@ -8,3 +8,7 @@ export const routes = {
   CITY: '/:cityName',
   BASE_ROUTE: `/${cities[0]}`,
 };
+
+export const createRoute = {
+  CITY: (cityName: string) => `/${cityName}`,
+};

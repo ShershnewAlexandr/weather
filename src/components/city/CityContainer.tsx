@@ -5,6 +5,7 @@ import { cityWeatherSelector } from 'ducks/weather/weatherSelectors';
 import { weatherActions } from 'ducks/weather/weatherSlice';
 import { IRouteCityParams } from 'utils/constants/routes';
 import { City } from './City';
+import { CityLoader } from './CityLoader';
 
 const CityContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const CityContainer: React.FC = () => {
     }
   }, [cityWeather, params.cityName, dispatch]);
 
-  return cityWeather ? <City city={cityWeather} /> : null;
+  return cityWeather ? <City city={cityWeather} /> : <CityLoader />;
 };
 
 export { CityContainer };

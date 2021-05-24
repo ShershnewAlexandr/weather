@@ -24,7 +24,7 @@ function* getWeatherRequest(
 
     if (
       city
-        ? differenceInMinutes(new Date(), new Date(city.updatedAt)) < 1
+        ? differenceInMinutes(new Date(), new Date(city.updatedAt)) > 1
         : true
     ) {
       const response: AxiosResponse<IWeather> = yield axios.get(APIUrl, {
@@ -33,7 +33,12 @@ function* getWeatherRequest(
           q: cityName,
         },
       });
-      yield put(weatherActions.getWeatherSuccess(response.data));
+      yield put(
+        weatherActions.getWeatherSuccess({
+          cityKey: cityName,
+          weather: response.data,
+        })
+      );
     }
   } catch (e) {
     yield put(weatherActions.getWeatherError());

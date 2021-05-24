@@ -3,6 +3,11 @@ import { differenceInMinutes } from 'date-fns';
 import { IWeather } from './weatherTypes';
 import { cities } from 'config/openWeatherConfig';
 
+interface IGetWeatherSuccessPayload {
+  weather: IWeather;
+  cityKey: string;
+}
+
 interface IAdditionalWeatherInfo {
   updatedAt: string;
   needUpdate: boolean;
@@ -25,11 +30,14 @@ export const weatherSlice = createSlice({
   },
   reducers: {
     getWeatherRequest: (state: IState, action: PayloadAction<string>) => {},
-    getWeatherSuccess: (state: IState, action: PayloadAction<IWeather>) => {
+    getWeatherSuccess: (
+      state: IState,
+      action: PayloadAction<IGetWeatherSuccessPayload>
+    ) => {
       state.cities = {
         ...state.cities,
-        [action.payload.name]: {
-          ...action.payload,
+        [action.payload.cityKey]: {
+          ...action.payload.weather,
           updatedAt: new Date().toString(),
           needUpdate: false,
         },

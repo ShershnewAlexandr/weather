@@ -1,0 +1,28 @@
+.CityContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 10px 40px 10px;
+  height: 250px;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  width: 200px;
+  margin: 100px auto;
+}
+
+.weatherDescription {
+  text-transform: capitalize;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.boldText {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.bigText {
+  font-size: 20px;
+}
